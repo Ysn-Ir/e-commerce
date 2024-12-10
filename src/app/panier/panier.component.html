@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="basket.length === 0" class="alert alert-info">
+      Your basket is empty.
+    </div>
+    
+    <div *ngIf="basket.length > 0" class="row">
+      <div *ngFor="let it of basket" class="col-12 mb-4">
+        <div class="card d-flex flex-row">
+          <img src={{it.img}} class="card-img-left" alt="Card image cap" style="width: 150px; height: 150px; object-fit: cover;">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title">{{ it.name }}</h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="card-text" style="width: 800px;">{{it.description}}</p>
+              <div class="d-flex align-items-center">
+                <p class="card-text mr-2"><strong>Price: ${{ it.price }}--</strong></p>
+                <p class="ml-3"><strong>Quantity: {{ it.quantity }}</strong></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+              <strong class="mr-2">Total: ${{ it.price * it.quantity }}</strong> 
+              <button class="btn btn-danger custom-btn" style="margin-right: 50px;" (click)="delete(it)">Delete</button>
+              <button class="btn btn-danger custom-btn"style="margin-right: 50px;" (click)="increaseQuantity(it)" >+</button> 
+              <button class="btn btn-danger custom-btn"style="margin-right: 50px;" (click)="decreaseQuantity(it)" >-</button> 
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-4 text-center">
+    <h1 class="display-4 text-uppercase font-weight-bold text-primary mb-4">
+      Total Price: <span class="text-danger">${{ total }}</span>
+    </h1>
+    <p class="lead text-muted">Thank you for shopping with us! Ready to make your purchase?</p>
+    <button class="btn btn-lg btn-success mb-4">Proceed to Checkout</button>
+  </div>
+  
